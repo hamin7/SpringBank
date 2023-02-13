@@ -14,7 +14,12 @@ public class AccountService {
     AccountRepository accountRepository;
 
     public void makeAccount(Account acc) throws Exception {
-        accountRepository.save(acc);
+        Optional<Account> oacc = accountRepository.findById(acc.getId());
+        if (oacc.isEmpty()) {
+            accountRepository.save(acc);
+        } else {
+            throw new Exception("계좌번호 중복");
+        }
     }
 
     public Account accountInfo(String id) throws Exception {

@@ -37,7 +37,7 @@ public class AccountController {
     public ResponseEntity<String> makeAccount(@ModelAttribute Account acc) {
         try {
             accountService.makeAccount(acc);
-            return new ResponseEntity<String>("계좌개설 성공", HttpStatus.ACCEPTED);
+            return new ResponseEntity<String>("계좌개설 성공", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<String>("계좌개설 실패", HttpStatus.BAD_REQUEST);
