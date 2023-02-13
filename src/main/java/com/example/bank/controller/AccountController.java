@@ -20,24 +20,6 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-//    @PostMapping("/makeAccount")
-//    @ResponseBody
-//    public String makeAccount(@RequestParam("id") String id,
-//                              @RequestParam("name") String name,
-//                              @RequestParam("balance") Integer balance,
-//                              @RequestParam("type") String type,
-//                              @RequestParam(name = "grade", required = false) String grade) {
-//
-//
-//        try {
-//            accountService.makeAccount(new Account(id, name, balance, type, grade));
-//            return "계좌개설 성공";
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return "계좌개설 실패";
-//        }
-//    }
-
     @PostMapping("/makeAccount")
     @ResponseBody
     public ResponseEntity<String> makeAccount(@ModelAttribute Account acc) {
