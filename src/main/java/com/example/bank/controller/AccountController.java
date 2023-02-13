@@ -32,9 +32,9 @@ public class AccountController {
         }
     }
 
-    @GetMapping("/accountInfo")
+    @GetMapping("/accountInfo/{id}")
     @ResponseBody
-    public ResponseEntity<Account> accountInfo(@RequestParam("id") String id) {
+    public ResponseEntity<Account> accountInfo(@PathVariable String id) {
         ResponseEntity<Account> res = null;
         try {
             Account acc = accountService.accountInfo(id);
