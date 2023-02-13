@@ -51,7 +51,22 @@ public class AccountController {
         try {
             Account acc = accountService.accountInfo(id);
             res = new ResponseEntity<Account>(acc, HttpStatus.OK);
-        }catch (Exception e) {
+        } catch (Exception e) {
+            e.printStackTrace();
+            res = new ResponseEntity<Account>(HttpStatus.BAD_REQUEST);
+        }
+        return res;
+    }
+
+    @PostMapping("/deposit")
+    public ResponseEntity<Account> deposit(
+            @RequestParam("id") String id,
+            @RequestParam("money") Integer money) {
+        ResponseEntity<Account> res = null;
+        try {
+            Account acc = accountService.deposit(id, money);
+            res = new ResponseEntity<Account>(acc, HttpStatus.OK);
+        } catch (Exception e) {
             e.printStackTrace();
             res = new ResponseEntity<Account>(HttpStatus.BAD_REQUEST);
         }
