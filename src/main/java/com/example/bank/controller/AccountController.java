@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class AccountController {
 
-    private Logger log = LoggerFactory.getLogger(this.getClass());
+    private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     @Autowired
     private AccountService accountService;
