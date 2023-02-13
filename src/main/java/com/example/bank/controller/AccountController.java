@@ -2,6 +2,8 @@ package com.example.bank.controller;
 
 import com.example.bank.entity.Account;
 import com.example.bank.service.AccountService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,8 @@ import java.util.List;
 
 @Controller
 public class AccountController {
+
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private AccountService accountService;
@@ -96,6 +100,7 @@ public class AccountController {
         ResponseEntity<List<Account>> res = null;
         try {
             List<Account> accs = accountService.accountList();
+            log.info(accs.toString());
             res = new ResponseEntity<List<Account>>(accs, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
