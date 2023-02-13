@@ -4,6 +4,7 @@ import com.example.bank.entity.Account;
 import com.example.bank.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -39,6 +40,15 @@ public class AccountService {
         if (oacc.isEmpty()) throw new Exception("계좌번호 오류");
         Account acc = oacc.get();
         acc.deposit(money);
+        accountRepository.save(acc);
+        return acc;
+    }
+
+    public Account withdraw(String id, Integer money) throws Exception {
+        Optional<Account> oacc = accountRepository.findById(id);
+        if (oacc.isEmpty()) throw new Exception("계좌번호 오류");
+        Account acc = oacc.get();
+        acc.withdraw(money);
         accountRepository.save(acc);
         return acc;
     }

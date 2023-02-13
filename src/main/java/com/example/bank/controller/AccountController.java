@@ -72,4 +72,19 @@ public class AccountController {
         }
         return res;
     }
+
+    @PostMapping("/withdraw")
+    public ResponseEntity<Account> withdraw(
+            @RequestParam("id") String id,
+            @RequestParam("money") Integer money) {
+        ResponseEntity<Account> res = null;
+        try {
+            Account acc = accountService.withdraw(id, money);
+            res = new ResponseEntity<Account>(acc, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            res = new ResponseEntity<Account>(HttpStatus.BAD_REQUEST);
+        }
+        return res;
+    }
 }
