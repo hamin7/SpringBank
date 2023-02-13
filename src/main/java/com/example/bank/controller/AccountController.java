@@ -20,7 +20,7 @@ public class AccountController {
                               @RequestParam("name") String name,
                               @RequestParam("balance") Integer balance,
                               @RequestParam("type") String type,
-                              @RequestParam("grade") String grade) {
+                              @RequestParam(name = "grade", required = false) String grade) {
         try {
             accountService.makeAccount(new Account(id, name, balance, type, grade));
             return "계좌개설 성공";
