@@ -9,16 +9,13 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class AccountService {
 
 //    @Autowired
 //    AccountRepository accountRepository;
 
     private final AccountRepository accountRepository;
-    public AccountService(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
 
     public void makeAccount(Account acc) throws Exception {
         Optional<Account> oacc = accountRepository.findById(acc.getId());
