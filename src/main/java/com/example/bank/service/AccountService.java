@@ -33,4 +33,13 @@ public class AccountService {
         }
         return oacc.get();
     }
+
+    public Account deposit(String id, Integer money) throws Exception {
+        Optional<Account> oacc = accountRepository.findById(id);
+        if (oacc.isEmpty()) throw new Exception("계좌번호 오류");
+        Account acc = oacc.get();
+        acc.deposit(money);
+        accountRepository.save(acc);
+        return acc;
+    }
 }
