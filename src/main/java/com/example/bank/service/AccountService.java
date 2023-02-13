@@ -2,16 +2,23 @@ package com.example.bank.service;
 
 import com.example.bank.entity.Account;
 import com.example.bank.repository.AccountRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+//@RequiredArgsConstructor
 public class AccountService {
 
-    @Autowired
-    AccountRepository accountRepository;
+//    @Autowired
+//    AccountRepository accountRepository;
+
+    private final AccountRepository accountRepository;
+    public AccountService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
     public void makeAccount(Account acc) throws Exception {
         Optional<Account> oacc = accountRepository.findById(acc.getId());
