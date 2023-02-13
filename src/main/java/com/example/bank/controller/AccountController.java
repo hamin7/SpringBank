@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class AccountController {
 
@@ -84,6 +86,20 @@ public class AccountController {
         } catch (Exception e) {
             e.printStackTrace();
             res = new ResponseEntity<Account>(HttpStatus.BAD_REQUEST);
+        }
+        return res;
+    }
+
+    @GetMapping("/all")
+    @ResponseBody
+    public ResponseEntity<List<Account>> allAccount() {
+        ResponseEntity<List<Account>> res = null;
+        try {
+            List<Account> accs = accountService.accountList();
+            res = new ResponseEntity<List<Account>>(accs, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            res = new ResponseEntity<List<Account>>(HttpStatus.BAD_REQUEST);
         }
         return res;
     }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -51,5 +52,9 @@ public class AccountService {
         acc.withdraw(money);
         accountRepository.save(acc);
         return acc;
+    }
+
+    public List<Account> accountList() throws Exception {
+        return accountRepository.findAll();
     }
 }
